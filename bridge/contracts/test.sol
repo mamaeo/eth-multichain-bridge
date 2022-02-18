@@ -2,7 +2,7 @@
 //"SPDX-License-Identifier: UNLICENSED"
 
 pragma solidity ^0.6.12;
-import "../interfaces/usingProvable.sol";
+import "./usingProvable.sol";
 
 contract ExampleContract is usingProvable {
 
