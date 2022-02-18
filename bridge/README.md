@@ -9,8 +9,6 @@ Questa directory contiene tutti i sorgenti dei contratti scritti per questo prog
 ## **- interfaces folder**
 Questa directory contiene i file interfaccia che possono essere utilizzati dai contratti ma che non sono considerati come elementi primari del progetto. Aggiungere o modificare uno di questi file interfaccia determina una ricompilazione solo se questi sono richiesti da almeno uno dei contratti principali.
 
-<em>In questa directory è contenuto il file usingProvable.sol che contiene tutti i metodi necessari per interagire con i servizi offerti da Oraclize. Questa interfaccia verrà importata all'interno dei contratti sviluppati che richiederanno tali servizi.</em>
-
 ## **- scripts folder**
 Questa interfaccia conterrà tutti i file python attraverso i quali accederemo ai contratti al fine di automatizzare alcuni task o interagire con gli stessi. Gli script possono essere eseguiti attraverso il comando:
 ```
