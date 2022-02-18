@@ -5,6 +5,10 @@ Ciascun progetto Brownie prevede le seguenti directory:
 
 ## **- contracts folder**
 Questa directory contiene tutti i sorgenti dei contratti scritti per questo progetto. Ogni volta che Brownie viene eseguito, effettua una ricerca all'interno di questa directory alla ricerca di nuovi file o file modificati e, in presenza di uno o più di essi, procede alla loro compilazione nonchè inclusione all'interno del progetto.
+Per compilare i contratti sviluppati è possibile utilizzare il comando:
+```
+brownie compile
+```
 
 ## **- interfaces folder**
 Questa directory contiene i file interfaccia che possono essere utilizzati dai contratti ma che non sono considerati come elementi primari del progetto. Aggiungere o modificare uno di questi file interfaccia determina una ricompilazione solo se questi sono richiesti da almeno uno dei contratti principali.
