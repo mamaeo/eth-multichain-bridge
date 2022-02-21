@@ -3,26 +3,29 @@ from brownie import MultiChainBridge, accounts
 from bigchain_driver.crypto import generate_keypair
 from bigchain_driver import BigchainDB
 from dotenv import load_dotenv
+import pytest
 import os
 
 # Initialize BigChainDB drivers which are compatibles with multichaindb
 bdb = BigchainDB(None)
 # Load variables contained in .env file
 load_dotenv()
-
-multichain_public_url = os.getenv('https://purple-ape-68.loca.lt')
-
+# Get localtunnel public url
+multichain_public_url = os.getenv('LOCALTUNNEL_URL')
+# Generate new public/private keys
 alice = generate_keypair()
 
-def main():
+@pytest.fixture
+def multichain_bridge():
     # Deploy MultiChainBridge contract (see /contracts/multichainBridge.sol)
-    multichain_bridge = MultiChainBridge.deploy({'from': accounts[1]})
+    # The default accounts used for this test is first
+    multichain_bridge = MultiChainBridge.deploy({'from': accounts[0]})
     return multichain_bridge
 
 
-def create_new_transaction(asset):
+def test_create_new_transaction(asset):
     # Import MultiChainBridge contract
-    multichain_bridge = main()
+    multichain_bridge = multichain_bridge()
     # Prepare transaction
     token_tx = bdb.transactions.fulfill(
         bdb.transactions.prepare(
@@ -39,10 +42,10 @@ def create_new_transaction(asset):
         token_tx, {'value': 4*10**8})
 
 
-def get_transaction(transaction_id):
+def test_get_transaction():
     # Import MultiChainBridge contract
-    multichain_bridge = main()
+    multichain_bridge = multichain_bridge()
     # Get transaction from multichain
-    return multichain_bridge.GET('{}/api/v1/transactions/{}'
-            .format(multichain_public_url, transaction_id), 
+    return multichain_bridge.GET('{}/api/v1/outputs?public_key={}'
+            .format(multichain_public_url, alice.public_key), 
         {'value': 4*10**8})

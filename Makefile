@@ -3,7 +3,20 @@ ECHO := /usr/bin/env echo
 
 IS_PYTHON_INSTALLED := $(shell command -v python3 2> /dev/null)
 IS_NPM_INSTALLED := $(shell command -v npm -v 2> /dev/null)
+RUN_BROWNIE_IN_BACKGROUND := $(shell command brownie console &2> /dev/null)
 ERROR := 0
+# Default port used by brownie
+PORT := 8545
+
+test: init
+ifndef RUN_BROWNIE_IN_BACKGROUND
+	@$(ECHO) "Error: cannot start brownie"
+else
+	ethereum-bridge -H localhost:$(PORT) -a 0
+	lt --port $(PORT)
+	brownie test create_and_check
+endif
+
 
 check-deps: python-deps npm-deps
 ifndef ERROR
@@ -23,5 +36,5 @@ ifndef IS_NPM_INSTALLED
 endif
 
 init:
-	python3 setup.py install
+	pip3 install -r requirements.txt
 	npm install
