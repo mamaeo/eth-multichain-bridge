@@ -8,14 +8,6 @@ ERROR := 0
 # Change it if you change network configurations in brownie
 PORT := 8545
 
-run: check-deps
-	lt --port $(PORT) &
-	brownie console &
-	ethereum-bridge -H localhost:8545 -a 1 & > /dev/null
-
-stop: check-deps
-	#
-
 check-deps: python-deps npm-deps
 ifndef ERROR
 	@$(ECHO) "Please install dependencies"	
