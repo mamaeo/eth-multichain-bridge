@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/mamaeo/eth-multichain-bridge"
     },
-    "dependencies": {
-        "ganache": "^7.0.2",
-        "ethereum-bridge": "^0.6.2",
-        "localtunnel": "^2.0.2"
+    "scripts": {
+        "ganache": "npm install -g ganache",
+        "ethereum-bridge": "npm install -g ethereum-bridge",
+        "localtunnel": "npm install -g localtunnel"
     }
 }

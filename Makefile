@@ -9,7 +9,7 @@ ERROR := 0
 DEFAULT_BROWNIE_PORT := 8545
 MULTICHAIN_API_PORT := 9984
 
-test: init
+test: build
 ifndef RUN_BROWNIE_IN_BACKGROUND
 	@$(ECHO) "Error: cannot start brownie"
 else
@@ -36,6 +36,6 @@ ifndef IS_NPM_INSTALLED
 	ERROR := 1
 endif
 
-init:
+build:
 	pip3 install -r requirements.txt
 	npm install
