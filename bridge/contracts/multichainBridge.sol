@@ -8,8 +8,6 @@ contract MultiChainBridge is usingProvable {
 
     event LogQueryResult(string price);
     event LogNewProvableQuery(string description);
-    // Define here multichain public url
-    string multichainURL = "/*INSERT HERE PUBLIC URL TO MULTICHAINDB*/";
 
 
     function __callback(bytes32 myid, string memory result) public virtual override {
@@ -25,7 +23,7 @@ contract MultiChainBridge is usingProvable {
         }
     }
 
-    function GET(string memory url) public payable {
+    function GET(string memory url) public virtual payable {
         // check for sufficient funds to execute the transaction
         if (provable_getPrice("URL") > address(this).balance) {
             // Cannot make any request due to missing ether
@@ -37,17 +35,24 @@ contract MultiChainBridge is usingProvable {
         }
     }
 
-    function get_transaction_by_id(string memory txid) public payable {
+    /* The cost of this function will be higher then that for GET
+    function get_transaction_by_id(string memory transaction_id) public payable {
         // Create request get url
-        string memory request_url = string(abi.encodePacked(multichainURL, "/api/v1/transactions/", txid));
+        string memory request_url = string(abi.encodePacked(multichainURL, "/api/v1/transactions/", transaction_id));
         // Call get method from this class
         GET(request_url);
-    }
+    }*/
 
-
-
-    function POST(string memory url, string memory tx_json) public payable {
-        
+    function POST(string memory url, string memory transaction) public virtual payable {
+        // check for sufficient funds to execute the transaction
+        if (provable_getPrice("URL") > address(this).balance) {
+            // Cannot make any request due to missing ether
+            emit LogNewProvableQuery("Provable query was NOT sent, please add some ETH to cover for the query fee");
+        } else {
+            // Make a request using oracle service
+            emit LogNewProvableQuery("Provable query was sent, standing by for the answer..");
+            provable_query("URL", url, transaction);
+        }
     }
    
 }

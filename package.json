@@ -1,0 +1,15 @@
+
+{
+    "name": "eth-multichain-bridge",
+    "description": "",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "scripts": {
+        "ganache": "npm install ganache",
+        "ethereum-bridge": "npm install ethereum-bridge",
+        "localtunnel": "npm install localtunnel"
+    }
+}
