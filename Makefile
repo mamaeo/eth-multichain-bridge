@@ -6,14 +6,15 @@ IS_NPM_INSTALLED := $(shell command -v npm -v 2> /dev/null)
 RUN_BROWNIE_IN_BACKGROUND := $(shell command brownie console &2> /dev/null)
 ERROR := 0
 # Default port used by brownie
-PORT := 8545
+DEFAULT_BROWNIE_PORT := 8545
+MULTICHAIN_API_PORT := 9984
 
 test: init
 ifndef RUN_BROWNIE_IN_BACKGROUND
 	@$(ECHO) "Error: cannot start brownie"
 else
-	ethereum-bridge -H localhost:$(PORT) -a 0
-	lt --port $(PORT)
+	ethereum-bridge -H localhost:$(DEFAULT_BROWNIE_PORT) -a 0
+	lt --port $(MULTICHAIN_API_PORT)
 	brownie test create_and_check
 endif
 
