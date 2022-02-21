@@ -38,4 +38,6 @@ endif
 
 build:
 	pip3 install -r requirements.txt
-	npm install
+	npm run ganache
+	npm run ethereum-bridge
+	npm run localtunnel
