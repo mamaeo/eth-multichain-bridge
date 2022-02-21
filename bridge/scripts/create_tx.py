@@ -1,11 +1,15 @@
 
 from brownie import MultiChainBridge, accounts
 from bigchain_driver import BigchainDB
+from dotenv import load_dotenv
+import os
 
 # Initialize BigChainDB drivers which are compatibles with multichaindb
 bdb = BigchainDB(None)
+# Load variables contained in .env file
+load_dotenv()
 
-multichain_public_url = ''
+multichain_public_url = os.getenv('PUBLIC_LOCALTUNNEL_URL')
 
 
 def main():

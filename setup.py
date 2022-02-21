@@ -52,7 +52,8 @@ tests_require = [
 
 install_requires = [
     'bigchaindb_driver==0.5.0a4',
-    'eth-brownie==1.18.1'
+    'eth-brownie==1.18.1',
+    'python-dotenv==0.19.2'
 ]
 
 if sys.version_info < (3, 6):
