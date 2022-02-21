@@ -4,9 +4,6 @@ ECHO := /usr/bin/env echo
 IS_PYTHON_INSTALLED := $(shell command -v python3 2> /dev/null)
 IS_NPM_INSTALLED := $(shell command -v npm -v 2> /dev/null)
 ERROR := 0
-# Default port used by brownie service
-# Change it if you change network configurations in brownie
-PORT := 8545
 
 check-deps: python-deps npm-deps
 ifndef ERROR
@@ -26,5 +23,5 @@ ifndef IS_NPM_INSTALLED
 endif
 
 init:
-	python3 setup.py
-	npm start
+	python3 setup.py install
+	npm install

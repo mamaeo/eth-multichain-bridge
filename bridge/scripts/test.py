@@ -1,5 +1,6 @@
 
 from brownie import MultiChainBridge, accounts
+from bigchain_driver.crypto import generate_keypair
 from bigchain_driver import BigchainDB
 from dotenv import load_dotenv
 import os
@@ -9,8 +10,9 @@ bdb = BigchainDB(None)
 # Load variables contained in .env file
 load_dotenv()
 
-multichain_public_url = os.getenv('PUBLIC_LOCALTUNNEL_URL')
+multichain_public_url = os.getenv('https://purple-ape-68.loca.lt')
 
+alice = generate_keypair()
 
 def main():
     # Deploy MultiChainBridge contract (see /contracts/multichainBridge.sol)
@@ -18,29 +20,29 @@ def main():
     return multichain_bridge
 
 
-def create_new_transaction(user_pubkey, asset, user_secret):
+def create_new_transaction(asset):
     # Import MultiChainBridge contract
     multichain_bridge = main()
     # Prepare transaction
     token_tx = bdb.transactions.fulfill(
         bdb.transactions.prepare(
             operation='CREATE',
-            signers=user_pubkey,
+            signers=alice.public_key,
             recipients=None,
             asset=asset
         ), 
-        user_secret
+        alice.private_key
     )
     # Send transaction using oracle services
-    multichain_bridge.POST('{}/transactions?mode=commit'
-        .format(multichain_public_url), token_tx)
+    return multichain_bridge.POST('{}/transactions?mode=commit'
+            .format(multichain_public_url), 
+        token_tx, {'value': 4*10**8})
 
 
 def get_transaction(transaction_id):
     # Import MultiChainBridge contract
     multichain_bridge = main()
     # Get transaction from multichain
-    tx = multichain_bridge.GET('{}/api/v1/transactions/{}'
-        .format(multichain_public_url, transaction_id))
-
-    print(tx)
+    return multichain_bridge.GET('{}/api/v1/transactions/{}'
+            .format(multichain_public_url, transaction_id), 
+        {'value': 4*10**8})

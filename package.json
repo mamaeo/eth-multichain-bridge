@@ -7,9 +7,9 @@
         "type": "git",
         "url": ""
     },
-    "scripts": {
-        "ganache": "npm install ganache",
-        "ethereum-bridge": "npm install ethereum-bridge",
-        "localtunnel": "npm install localtunnel"
+    "dependencies": {
+        "ganache": "^7.0.2",
+        "ethereum-bridge": "^0.6.2",
+        "localtunnel": "^2.0.2"
     }
 }
