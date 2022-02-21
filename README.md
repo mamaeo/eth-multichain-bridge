@@ -22,7 +22,7 @@ NOTA: per avere maggiori informazioni sull'installazione di Brownie, consultare 
 <br>
 
 ## Tunnelling
-Provable è un servizio pubblico e richiede che i servizi a cui si intende effettuare delle query attraverso le proprie API siano altrettanto pubblici; nell'ambiente preparato in precedenza invece, multichaindb non è pubblico per questo sarà necessario esporre la porta attraverso un tunnel così da permetterle di essere raggiunta attraverso un url pubblico. Per fare ciò possiamo utilizzare l'utility offerta da `https://localtunnel.github.io/www/` rendendo accessibile la porta utilizzata dal servizio multichain per l'accesso alle API (porta 9984).
+Provable richiede che i servizi siano pubblici mentre multichaindb non è pubblico, pertanto èà necessario esporre la porta attraverso un tunnel così da permetterle di essere raggiunta attraverso un url pubblico. Per fare ciò possiamo utilizzare l'utility offerta da `https://localtunnel.github.io/www/` rendendo accessibile la porta utilizzata dal servizio multichain per l'accesso alle API (porta 9984).
 ```
 npm install -g localtunnel
 lt --port 9984
