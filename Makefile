@@ -10,6 +10,9 @@ MULTICHAIN_API_PORT := 9984
 # Standard user which deploy contracts
 DEPLOYER = 0
 
+test: start
+	truffle test
+
 start: check-deps ganache eth-bridge localtunnel
 # Do nothing
 
