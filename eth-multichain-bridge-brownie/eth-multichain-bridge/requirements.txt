@@ -1,4 +1,0 @@
-
-bigchaindb_driver
-eth-brownie
-python-dotenv
