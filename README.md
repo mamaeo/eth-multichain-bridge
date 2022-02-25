@@ -19,3 +19,8 @@ Provable richiede che i servizi siano pubblici mentre multichaindb non è pubbli
 npm install -g localtunnel
 lt --port 9984
 ```
+
+## Testing
+Per testare i contratti ed eseguire i test contenuti nell'omonima directory è sufficiente eseguire il comando:
+```
+make test -j3
