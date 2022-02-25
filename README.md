@@ -32,6 +32,6 @@ lt --port 9984
 
 ## Esecuzione e Testing
 I tool precedentemente citati vengono installati autonomamente durante l'esecuzione del comando make.
-Per testare i contratti ed eseguire i test contenuti nell'omonima directory è sufficiente eseguire il comando:
+Per eseguire i contratti ed effettuare i test contenuti nell'omonima directory è sufficiente eseguire il comando:
 ```
 make test -j3
