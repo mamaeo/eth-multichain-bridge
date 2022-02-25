@@ -1,5 +1,15 @@
 # eth-multichain-bridge
 
+## Truffle suite & Ganache
+Truffle è uno strumento che permette di sviluppare smart contract ed interagire con essi, attraverso una console dedicata o attraverso degli script javascript.
+E' uno strumento estremamente versatile che permette di semplificare gli aspetti più tediosi dello sviluppo di contratti ethereum.
+Ganache invece è un tool che mette a disposizione una blockchain Ethereum in pochi semplicissimi step, grazie alla quale sarà poi possibile eseguire, testare e ispezionare gli smart contract sviluppati e come questi interagiscono all'interno della catena.
+Per scaricare truffle suite (verrà installato anche ganache essendo una dipendenza di truffle) è sufficiente digitare il comando:
+```
+npm -g install truffle
+```
+Per maggiori informazioni rimando alla consultazione del https://trufflesuite.com/docs/index.html
+
 ## Ethereum bridge
 Per utilizzare i servizi offerti da Oraclize attraverso una blockchain privata, sarà necessario importare la seguente repository git all'interno della propria directory principale.
 ```
@@ -20,7 +30,8 @@ npm install -g localtunnel
 lt --port 9984
 ```
 
-## Testing
+## Esecuzione e Testing
+I tool precedentemente citati vengono installati autonomamente durante l'esecuzione del comando make.
 Per testare i contratti ed eseguire i test contenuti nell'omonima directory è sufficiente eseguire il comando:
 ```
 make test -j3
